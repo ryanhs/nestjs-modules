@@ -9,7 +9,7 @@ import { CassandraModuleOptions } from './cassandra.interface';
 
 export const logger = new Logger(CASSANDRA_CONTEXT);
 
-const tokens: string[] = [];
+let tokens: string[] = [];
 export function validateCassandraToken(
   token: string = CASSANDRA_DEFAULT_TOKEN,
 ) {
@@ -19,6 +19,11 @@ export function validateCassandraToken(
 
   tokens.push(token);
   return token;
+}
+
+
+export function deleteCassandraToken(token: string) {
+  tokens = tokens.filter(t => t !== token);
 }
 
 export async function createClient(options: CassandraModuleOptions) {
