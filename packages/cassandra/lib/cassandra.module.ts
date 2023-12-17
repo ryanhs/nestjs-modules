@@ -20,6 +20,7 @@ import {
 } from './cassandra.providers';
 import {
   createCassandraToken,
+  deleteCassandraToken,
   logger,
   shutdownClient,
   validateCassandraToken,
@@ -76,5 +77,7 @@ export class CassandraModule implements OnApplicationShutdown {
       logger.log(`Closing Cassandra connection: ${this.clientToken}`);
       await shutdownClient(client);
     }
+
+    deleteCassandraToken(token);
   }
 }
